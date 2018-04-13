@@ -701,6 +701,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     [self forceLayoutSubviews];
     _hasInited = YES;
     [self wm_delaySelectIndexIfNeeded];
+    
 }
 
 - (void)didReceiveMemoryWarning {

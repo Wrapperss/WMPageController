@@ -92,7 +92,7 @@
     if (self.menuViewStyle == WMMenuViewStyleTriangle) {
         originY += self.redView.frame.size.height;
     }
-    return CGRectMake(0, originY, self.view.frame.size.width, self.view.frame.size.height - originY);
+    return CGRectMake(0, 100, 100, self.view.frame.size.height - originY);
 }
 
 @end

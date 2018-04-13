@@ -238,6 +238,11 @@
     NSInteger tag = index + WMMENUITEM_TAG_OFFSET;
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     self.selectIndex = index;
+    if (index == currentIndex) {
+        if (self.style == WMMenuViewStyleCreams) {
+            [self setCreamsStyle:self.selItem];
+        }
+    }
     if (index == currentIndex || !self.selItem) { return; }
     
     WMMenuItem *item = (WMMenuItem *)[self viewWithTag:tag];
@@ -249,7 +254,9 @@
         [self.delegate menuView:self didSelesctedIndex:index currentIndex:currentIndex];
     }
     [self refreshContenOffset];
-    [self setCreamsStyle:self.selItem];
+    if (self.style == WMMenuViewStyleCreams) {
+        [self setCreamsStyle:self.selItem];
+    }
 }
 
 - (void)updateTitle:(NSString *)title atIndex:(NSInteger)index andWidth:(BOOL)update {
