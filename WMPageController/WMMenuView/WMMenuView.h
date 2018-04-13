@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, WMMenuViewStyle) {
     WMMenuViewStyleFlood,        // 涌入效果 (填充)
     WMMenuViewStyleFloodHollow,  // 涌入效果 (空心的)
     WMMenuViewStyleSegmented,    // 涌入带边框,即网易新闻选项卡
+    WMMenuViewStyleCreams        // creams定制样式
 };
 
 // 原先基础上添加了几个方便布局的枚举，更多布局格式可以通过设置 `itemsMargins` 属性来自定义
@@ -93,6 +94,7 @@ typedef NS_ENUM(NSUInteger, WMMenuViewLayoutMode) {
 @property (nonatomic, assign) CGFloat progressViewCornerRadius;
 @property (nonatomic, assign) BOOL progressViewIsNaughty;
 @property (nonatomic, assign) BOOL showOnNavigationBar;
+@property (nonatomic, strong) UIColor *borderColor;
 
 - (void)slideMenuAtProgress:(CGFloat)progress;
 - (void)selectItemAtIndex:(NSInteger)index;

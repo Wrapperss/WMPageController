@@ -33,5 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSelected:(BOOL)selected withAnimation:(BOOL)animation;
 
+- (void)setCreamsStyle;
+
+- (void)resetStyle;
 @end
 NS_ASSUME_NONNULL_END

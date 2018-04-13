@@ -105,4 +105,13 @@
     }
 }
 
+- (void)setCreamsStyle {
+    self.layer.borderColor = self.selectedColor.CGColor;
+    self.layer.cornerRadius = self.frame.size.height * 0.5;
+    self.layer.borderWidth = 1;
+}
+
+- (void)resetStyle {
+    self.layer.borderColor = [[UIColor clearColor] CGColor];
+}
 @end

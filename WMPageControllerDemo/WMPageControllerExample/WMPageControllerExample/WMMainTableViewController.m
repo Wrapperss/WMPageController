@@ -34,7 +34,7 @@
 
 - (NSDictionary *)stylesMap {
     if (!_stylesMap) {
-        _stylesMap = @{@"WMMenuViewStyleDefault": @(WMMenuViewStyleDefault),
+        _stylesMap = @{@"WMMenuViewStyleDefault": @(WMMenuViewStyleCreams),
                        @"WMMenuViewStyleLine": @(WMMenuViewStyleLine),
                        @"WMMenuViewStyleFlood": @(WMMenuViewStyleFlood),
                        @"WMMenuViewStyleFloodHollow": @(WMMenuViewStyleFloodHollow),

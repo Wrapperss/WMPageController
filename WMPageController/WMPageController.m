@@ -139,6 +139,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
         }
         self.currentViewController = vc;
     }
+    
 }
 
 - (void)setProgressViewIsNaughty:(BOOL)progressViewIsNaughty {

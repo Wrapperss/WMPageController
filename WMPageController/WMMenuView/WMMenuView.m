@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *frames;
 @property (nonatomic, assign) NSInteger selectIndex;
 @property (nonatomic, readonly) NSInteger titlesCount;
+@property (nonatomic, strong) NSMutableArray *items;
 @end
 
 @implementation WMMenuView
@@ -248,6 +249,7 @@
         [self.delegate menuView:self didSelesctedIndex:index currentIndex:currentIndex];
     }
     [self refreshContenOffset];
+    [self setCreamsStyle:self.selItem];
 }
 
 - (void)updateTitle:(NSString *)title atIndex:(NSInteger)index andWidth:(BOOL)update {
@@ -313,6 +315,8 @@
     if (self = [super initWithFrame:frame]) {
         self.progressViewCornerRadius = WMUNDEFINED_VALUE;
         self.progressHeight = WMUNDEFINED_VALUE;
+        
+        self.items = [NSMutableArray array];
     }
     return self;
 }
@@ -383,7 +387,8 @@
         }
         case WMMenuViewStyleFloodHollow:
         case WMMenuViewStyleSegmented:
-        case WMMenuViewStyleFlood: {
+        case WMMenuViewStyleFlood:
+        case WMMenuViewStyleCreams: {
             return CGRectMake(0, (self.frame.size.height - self.progressHeight) / 2, self.scrollView.contentSize.width, self.progressHeight);
         }
     }
@@ -501,9 +506,11 @@
         if (i == 0) {
             [item setSelected:YES withAnimation:NO];
             self.selItem = item;
+            
         } else {
             [item setSelected:NO withAnimation:NO];
         }
+        [self.items addObject:item];
         [self.scrollView addSubview:item];
     }
 }
@@ -576,6 +583,7 @@
     pView.backgroundColor = [UIColor clearColor];
     self.progressView = pView;
     [self.scrollView insertSubview:self.progressView atIndex:0];
+    
 }
 
 #pragma mark - Menu item delegate
@@ -590,7 +598,10 @@
     
     CGFloat progress = menuItem.tag - WMMENUITEM_TAG_OFFSET;
     [self.progressView moveToPostion:progress];
-    
+    if (self.style == WMMenuViewStyleCreams) {
+        [self resetMenuItemStyle];
+        [self setCreamsStyle:menuItem];
+    }
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     if ([self.delegate respondsToSelector:@selector(menuView:didSelesctedIndex:currentIndex:)]) {
         [self.delegate menuView:self didSelesctedIndex:menuItem.tag - WMMENUITEM_TAG_OFFSET currentIndex:currentIndex];
@@ -605,6 +616,29 @@
         // 让选中的item位于中间
         [self refreshContenOffset];
     });
+}
+
+
+- (void)resetMenuItemStyle {
+    if (self.scrollView != nil) {
+        for (int i = 0; i < self.items.count; i++) {
+            WMMenuItem *menuItem = self.items[i];
+            menuItem.normalSize    = [self sizeForState:WMMenuItemStateNormal atIndex:i];
+            menuItem.selectedSize  = [self sizeForState:WMMenuItemStateSelected atIndex:i];
+            menuItem.normalColor   = [self colorForState:WMMenuItemStateNormal atIndex:i];
+            menuItem.selectedColor = [self colorForState:WMMenuItemStateSelected atIndex:i];
+            if (self.fontName) {
+                menuItem.font = [UIFont fontWithName:self.fontName size:menuItem.selectedSize];
+            } else {
+                menuItem.font = [UIFont systemFontOfSize:menuItem.selectedSize];
+            }
+            [menuItem resetStyle];
+        }
+    }
+}
+
+- (void)setCreamsStyle:(WMMenuItem *)menuItem {
+    [menuItem setCreamsStyle];
 }
 
 @end
