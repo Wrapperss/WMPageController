@@ -82,7 +82,7 @@
     WMMenuViewStyle style = [self.stylesMap[key] integerValue];
     
     WMCustomizedPageController *vc = [[WMCustomizedPageController alloc] init];
-    vc.selectIndex = 1;
+    vc.selectIndex = 0;
     vc.title = key;
     vc.menuViewStyle = style;
     vc.automaticallyCalculatesItemWidths = YES;
