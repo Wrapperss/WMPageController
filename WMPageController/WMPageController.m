@@ -672,6 +672,9 @@ static NSInteger const kWMControllerCountUndefined = -1;
     UIFont *titleFont = self.titleFontName ? [UIFont fontWithName:self.titleFontName size:self.titleSizeSelected] : [UIFont systemFontOfSize:self.titleSizeSelected];
     NSDictionary *attrs = @{NSFontAttributeName: titleFont};
     CGFloat itemWidth = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:attrs context:nil].size.width;
+    if (self.menuViewStyle == WMMenuViewStyleCreams) {
+        itemWidth += self.titleSizeNormal;
+    }
     return ceil(itemWidth);
 }
 
