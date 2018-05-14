@@ -341,7 +341,7 @@
 }
 
 - (void)resetSelectionIfNeeded {
-    if (self.selectIndex == 0) { return; }
+    if (self.frame.size.height == 0) { return; }
     [self selectItemAtIndex:self.selectIndex];
 }
 
