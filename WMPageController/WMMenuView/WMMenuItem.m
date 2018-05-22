@@ -105,13 +105,37 @@
     }
 }
 
-- (void)setCreamsStyle {
-    self.layer.borderColor = self.selectedColor.CGColor;
-    self.layer.cornerRadius = self.frame.size.height * 0.5;
-    self.layer.borderWidth = 1;
+- (void)setCreamsStyle:(CreamsMenuItemKind)kind {
+    switch (kind) {
+        case CreamsMenuItemKindCorner:
+        {
+            self.layer.borderColor = self.selectedColor.CGColor;
+            self.layer.cornerRadius = self.frame.size.height * 0.5;
+            self.layer.borderWidth = 1;
+        }
+            break;
+            
+        case CreamsMenuItemKindLump:
+        {
+            self.backgroundColor = [self.selectedColor colorWithAlphaComponent:0.2];
+            self.layer.cornerRadius = 5;
+        }
+            break;
+        default:
+            break;
+    }
+  
 }
 
-- (void)resetStyle {
-    self.layer.borderColor = [[UIColor clearColor] CGColor];
+- (void)resetStyle:(CreamsMenuItemKind)kind {
+    switch (kind) {
+        case CreamsMenuItemKindCorner:
+            self.layer.borderColor = [[UIColor clearColor] CGColor];
+            break;
+        case CreamsMenuItemKindLump:
+            self.backgroundColor = [UIColor clearColor];
+        default:
+            break;
+    }
 }
 @end

@@ -240,7 +240,7 @@
     self.selectIndex = index;
     if (index == currentIndex) {
         if (self.style == WMMenuViewStyleCreams) {
-            [self setCreamsStyle:self.selItem];
+            [self setCreamsStyle:self.selItem kind: self.style];
         }
     }
     if (index == currentIndex || !self.selItem) { return; }
@@ -255,7 +255,7 @@
     }
     [self refreshContenOffset];
     if (self.style == WMMenuViewStyleCreams) {
-        [self setCreamsStyle:self.selItem];
+        [self setCreamsStyle:self.selItem kind: self.style];
     }
 }
 
@@ -395,7 +395,8 @@
         case WMMenuViewStyleFloodHollow:
         case WMMenuViewStyleSegmented:
         case WMMenuViewStyleFlood:
-        case WMMenuViewStyleCreams: {
+        case WMMenuViewStyleCreams:
+        case WMMenuViewStyleCreamsLump:{
             return CGRectMake(0, (self.frame.size.height - self.progressHeight) / 2, self.scrollView.contentSize.width, self.progressHeight);
         }
     }
@@ -606,8 +607,8 @@
     CGFloat progress = menuItem.tag - WMMENUITEM_TAG_OFFSET;
     [self.progressView moveToPostion:progress];
     if (self.style == WMMenuViewStyleCreams) {
-        [self resetMenuItemStyle];
-        [self setCreamsStyle:menuItem];
+        [self resetMenuItemStyle:self.style];
+        [self setCreamsStyle:menuItem kind:self.style];
     }
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     if ([self.delegate respondsToSelector:@selector(menuView:didSelesctedIndex:currentIndex:)]) {
@@ -626,7 +627,7 @@
 }
 
 
-- (void)resetMenuItemStyle {
+- (void)resetMenuItemStyle:(WMMenuViewStyle)kind {
     if (self.scrollView != nil) {
         for (int i = 0; i < self.items.count; i++) {
             WMMenuItem *menuItem = self.items[i];
@@ -639,13 +640,32 @@
             } else {
                 menuItem.font = [UIFont systemFontOfSize:menuItem.selectedSize];
             }
-            [menuItem resetStyle];
+            switch (kind) {
+                case WMMenuViewStyleCreamsLump:
+                    [menuItem resetStyle:CreamsMenuItemKindLump];
+                    break;
+                case WMMenuViewStyleCreams:
+                     [menuItem resetStyle:CreamsMenuItemKindCorner];
+                    break;
+                default:
+                    break;
+            }
+            
         }
     }
 }
 
-- (void)setCreamsStyle:(WMMenuItem *)menuItem {
-    [menuItem setCreamsStyle];
+- (void)setCreamsStyle:(WMMenuItem *)menuItem kind:(WMMenuViewStyle)kind {
+    switch (kind) {
+        case WMMenuViewStyleCreams:
+            [menuItem setCreamsStyle:CreamsMenuItemKindCorner];
+            break;
+        case WMMenuViewStyleCreamsLump:
+            [menuItem setCreamsStyle:CreamsMenuItemKindLump];
+        default:
+            break;
+    }
+    
 }
 
 @end

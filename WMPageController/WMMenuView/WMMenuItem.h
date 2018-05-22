@@ -14,6 +14,11 @@ typedef NS_ENUM(NSUInteger, WMMenuItemState) {
     WMMenuItemStateNormal,
 };
 
+typedef NS_ENUM(NSUInteger, CreamsMenuItemKind) {
+    CreamsMenuItemKindCorner,
+    CreamsMenuItemKindLump,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 @protocol WMMenuItemDelegate <NSObject>
 @optional
@@ -33,8 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSelected:(BOOL)selected withAnimation:(BOOL)animation;
 
-- (void)setCreamsStyle;
+- (void)setCreamsStyle:(CreamsMenuItemKind)kind;
 
-- (void)resetStyle;
+- (void)resetStyle:(CreamsMenuItemKind)kind;
 @end
 NS_ASSUME_NONNULL_END
