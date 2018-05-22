@@ -119,6 +119,9 @@
         {
             self.backgroundColor = [self.selectedColor colorWithAlphaComponent:0.2];
             self.layer.cornerRadius = 5;
+            self.layer.borderColor = [self.selectedColor colorWithAlphaComponent:0.2].CGColor;
+            self.layer.borderWidth = 0.01;
+            self.clipsToBounds = YES;
         }
             break;
         default:
