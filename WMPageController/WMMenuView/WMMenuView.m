@@ -239,9 +239,7 @@
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     self.selectIndex = index;
     if (index == currentIndex) {
-        if (self.style == WMMenuViewStyleCreams) {
-            [self setCreamsStyle:self.selItem kind: self.style];
-        }
+        [self setCreamsStyle:self.selItem kind: self.style];
     }
     if (index == currentIndex || !self.selItem) { return; }
     
@@ -254,9 +252,7 @@
         [self.delegate menuView:self didSelesctedIndex:index currentIndex:currentIndex];
     }
     [self refreshContenOffset];
-    if (self.style == WMMenuViewStyleCreams) {
-        [self setCreamsStyle:self.selItem kind: self.style];
-    }
+    [self setCreamsStyle:self.selItem kind: self.style];
 }
 
 - (void)updateTitle:(NSString *)title atIndex:(NSInteger)index andWidth:(BOOL)update {
@@ -606,10 +602,9 @@
     
     CGFloat progress = menuItem.tag - WMMENUITEM_TAG_OFFSET;
     [self.progressView moveToPostion:progress];
-    if (self.style == WMMenuViewStyleCreams) {
         [self resetMenuItemStyle:self.style];
         [self setCreamsStyle:menuItem kind:self.style];
-    }
+
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     if ([self.delegate respondsToSelector:@selector(menuView:didSelesctedIndex:currentIndex:)]) {
         [self.delegate menuView:self didSelesctedIndex:menuItem.tag - WMMENUITEM_TAG_OFFSET currentIndex:currentIndex];
