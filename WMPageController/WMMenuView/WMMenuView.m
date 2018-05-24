@@ -237,6 +237,7 @@
 - (void)selectItemAtIndex:(NSInteger)index {
     NSInteger tag = index + WMMENUITEM_TAG_OFFSET;
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
+    [self resetMenuItemStyle:self.style];
     self.selectIndex = index;
     if (index == currentIndex) {
         [self setCreamsStyle:self.selItem kind: self.style];
