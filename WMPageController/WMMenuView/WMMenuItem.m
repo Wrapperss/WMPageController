@@ -58,7 +58,7 @@
     CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(rateChange)];
     [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     _link = link;
-    self.font = selected ? self.font : self.selectedFont;
+    self.font = !selected ? self.font : self.selectedFont;
 }
 
 - (void)rateChange {
