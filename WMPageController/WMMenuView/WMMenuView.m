@@ -237,12 +237,14 @@
 - (void)selectItemAtIndex:(NSInteger)index {
     NSInteger tag = index + WMMENUITEM_TAG_OFFSET;
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
-    [self resetMenuItemStyle:self.style];
+    
     self.selectIndex = index;
     if (index == currentIndex) {
         [self setCreamsStyle:self.selItem kind: self.style];
     }
     if (index == currentIndex || !self.selItem) { return; }
+    
+    [self resetMenuItemStyle:self.style];
     
     WMMenuItem *item = (WMMenuItem *)[self viewWithTag:tag];
     [self.selItem setSelected:NO withAnimation:NO];
