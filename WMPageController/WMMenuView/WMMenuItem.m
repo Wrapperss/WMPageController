@@ -47,6 +47,7 @@
     _selected = selected;
     if (!animation) {
         self.rate = selected ? 1.0 : 0.0;
+        self.font = !selected ? self.font : self.selectedFont;
         return;
     }
     _sign = (selected == YES) ? 1 : -1;
