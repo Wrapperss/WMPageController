@@ -505,6 +505,13 @@
         } else {
             item.font = [UIFont systemFontOfSize:item.selectedSize];
         }
+        
+        if (self.selectedFontName) {
+            item.selectedFont =  [UIFont fontWithName:self.selectedFontName size:item.selectedSize];
+        } else {
+            item.selectedFont = [UIFont systemFontOfSize:item.selectedSize];
+        }
+        
         if ([self.dataSource respondsToSelector:@selector(menuView:initialMenuItem:atIndex:)]) {
             item = [self.dataSource menuView:self initialMenuItem:item atIndex:i];
         }

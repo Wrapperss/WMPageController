@@ -462,6 +462,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     menuView.progressViewIsNaughty = self.progressViewIsNaughty;
     menuView.progressViewCornerRadius = self.progressViewCornerRadius;
     menuView.showOnNavigationBar = self.showOnNavigationBar;
+    menuView.selectedFontName = self.selectedTitleFontName;
     if (self.titleFontName) {
         menuView.fontName = self.titleFontName;
     }

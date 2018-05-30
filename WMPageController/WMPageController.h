@@ -207,6 +207,13 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 @property (nonatomic, nullable, copy) NSString *titleFontName;
 
 /**
+ *  选中标题的字体名字
+ *  The name of title's font
+ */
+@property (nonatomic, nullable, copy) NSString *selectedTitleFontName;
+
+
+/**
  *  每个 MenuItem 的宽度
  *  The item width,when all are same,use this property
  */
