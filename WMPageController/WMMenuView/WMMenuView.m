@@ -390,6 +390,7 @@
             return CGRectZero;
         }
         case WMMenuViewStyleLine:
+        case WMMenuViewStyleTaikang:
         case WMMenuViewStyleTriangle: {
             return CGRectMake(0, self.frame.size.height - self.progressHeight - self.progressViewBottomSpace, self.scrollView.contentSize.width, self.progressHeight);
         }
@@ -397,7 +398,6 @@
         case WMMenuViewStyleSegmented:
         case WMMenuViewStyleFlood:
         case WMMenuViewStyleCreams:
-        case WMMenuViewStyleTaikang:
         case WMMenuViewStyleCreamsLump:{
             return CGRectMake(0, (self.frame.size.height - self.progressHeight) / 2, self.scrollView.contentSize.width, self.progressHeight);
         }
@@ -600,7 +600,6 @@
     pView.backgroundColor = [UIColor clearColor];
     self.progressView = pView;
     [self.scrollView insertSubview:self.progressView atIndex:0];
-    
 }
 
 #pragma mark - Menu item delegate
@@ -656,6 +655,9 @@
                 case WMMenuViewStyleCreams:
                      [menuItem resetStyle:CreamsMenuItemKindCorner];
                     break;
+                case WMMenuViewStyleTaikang:
+                    menuItem.backgroundColor = [UIColor clearColor];
+                    break;
                 default:
                     break;
             }
@@ -681,7 +683,6 @@
             case WMMenuViewStyleTaikang:
             [menuItem setTaikangStyle];
             break;
-            
             default:
             break;
         }
