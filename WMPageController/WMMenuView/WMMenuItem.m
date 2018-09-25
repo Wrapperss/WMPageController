@@ -134,7 +134,6 @@
 -(void)setTaikangStyle {
     self.textAlignment = NSTextAlignmentCenter;
     self.numberOfLines = 2;
-    self.layer.borderColor = self.selectedColor.CGColor;
     self.layer.cornerRadius = self.frame.size.height * 0.5;
     self.layer.borderWidth = 1;
 }
