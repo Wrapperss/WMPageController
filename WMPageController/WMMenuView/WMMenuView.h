@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, WMMenuViewStyle) {
     WMMenuViewStyleSegmented,    // 涌入带边框,即网易新闻选项卡
     WMMenuViewStyleCreams,       // creams定制样式边框
     WMMenuViewStyleCreamsLump,   // creams定制样式方块
-    taikangStyle                 // 泰康房源列表
+    WMMenuViewStyleTaikang       // 泰康房源列表
 };
 
 // 原先基础上添加了几个方便布局的枚举，更多布局格式可以通过设置 `itemsMargins` 属性来自定义

@@ -397,7 +397,7 @@
         case WMMenuViewStyleSegmented:
         case WMMenuViewStyleFlood:
         case WMMenuViewStyleCreams:
-        case taikangStyle:
+        case WMMenuViewStyleTaikang:
         case WMMenuViewStyleCreamsLump:{
             return CGRectMake(0, (self.frame.size.height - self.progressHeight) / 2, self.scrollView.contentSize.width, self.progressHeight);
         }
@@ -678,7 +678,7 @@
 
     - (void)setTaikangStyle:(WMMenuItem *)menuItem kind:(WMMenuViewStyle)kind {
         switch (kind) {
-            case taikangStyle:
+            case WMMenuViewStyleTaikang:
             [menuItem setTaikangStyle];
             break;
             
