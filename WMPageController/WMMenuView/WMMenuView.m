@@ -241,6 +241,7 @@
     self.selectIndex = index;
     if (index == currentIndex) {
         [self setCreamsStyle:self.selItem kind: self.style];
+        [self setTaikangStyle:self.selItem kind:self.style];
     }
     if (index == currentIndex || !self.selItem) { return; }
     
@@ -256,6 +257,7 @@
     }
     [self refreshContenOffset];
     [self setCreamsStyle:self.selItem kind: self.style];
+    [self setTaikangStyle:self.selItem kind:self.style];
 }
 
 - (void)updateTitle:(NSString *)title atIndex:(NSInteger)index andWidth:(BOOL)update {
@@ -395,6 +397,7 @@
         case WMMenuViewStyleSegmented:
         case WMMenuViewStyleFlood:
         case WMMenuViewStyleCreams:
+        case taikangStyle:
         case WMMenuViewStyleCreamsLump:{
             return CGRectMake(0, (self.frame.size.height - self.progressHeight) / 2, self.scrollView.contentSize.width, self.progressHeight);
         }
@@ -614,6 +617,7 @@
     [self.progressView moveToPostion:progress];
         [self resetMenuItemStyle:self.style];
         [self setCreamsStyle:menuItem kind:self.style];
+        [self setTaikangStyle:self.selItem kind:self.style];
 
     NSInteger currentIndex = self.selItem.tag - WMMENUITEM_TAG_OFFSET;
     if ([self.delegate respondsToSelector:@selector(menuView:didSelesctedIndex:currentIndex:)]) {
@@ -670,7 +674,17 @@
         default:
             break;
     }
-    
 }
 
+    - (void)setTaikangStyle:(WMMenuItem *)menuItem kind:(WMMenuViewStyle)kind {
+        switch (kind) {
+            case taikangStyle:
+            [menuItem setTaikangStyle];
+            break;
+            
+            default:
+            break;
+        }
+    }
 @end
+

@@ -40,6 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setSelected:(BOOL)selected withAnimation:(BOOL)animation;
 
 - (void)setCreamsStyle:(CreamsMenuItemKind)kind;
+    
+- (void)setTaikangStyle;
 
 - (void)resetStyle:(CreamsMenuItemKind)kind;
 @end
