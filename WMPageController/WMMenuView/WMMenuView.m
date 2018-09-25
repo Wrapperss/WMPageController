@@ -657,6 +657,7 @@
                     break;
                 case WMMenuViewStyleTaikang:
                     menuItem.backgroundColor = [UIColor clearColor];
+                    menuItem.layer.borderColor = [[UIColor clearColor] CGColor];
                     break;
                 default:
                     break;
